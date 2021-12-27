@@ -1,0 +1,15 @@
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.crosscutting.deps.json
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.crosscutting.dll
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.crosscutting.pdb
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.domain.dll
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.infrastructure.dll
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.domain.pdb
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\bin\Debug\netcoreapp3.1\my.doctor.infrastructure.pdb
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.csproj.AssemblyReference.cache
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.GeneratedMSBuildEditorConfig.editorconfig
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.AssemblyInfoInputs.cache
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.AssemblyInfo.cs
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.csproj.CoreCompileInputs.cache
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.csproj.CopyComplete
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.dll
+G:\ProjetosDotNet\wheres_my_doctor\my.doctor.api\my.doctor.crosscutting\obj\Debug\netcoreapp3.1\my.doctor.crosscutting.pdb

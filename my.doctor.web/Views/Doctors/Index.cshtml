@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DoctorViewModel>
+
+@{
+	ViewData["Title"] = "Doctors";
+}
+
+<h2>Doctors</h2>
+<a asp-action="Create" class="btn btn-primary">Register</a>
+
+@if (TempData["MSG_S"] != null)
+{
+	<p class="alert alert-success">@TempData["MSG_S"]</p>
+}
+
+@if (Model.Count() > 0)
+{
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Id)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Name)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Crm)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().AttendsByConvenience)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().HasClinic)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Email)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Address)</th>
+					<th scope="col">@Html.DisplayNameFor(m => m.First().Neighborhood)</th>
+				</tr>
+				@foreach(var doctor in Model)
+				{
+					<tr>
+						<th scope="row">@doctor.Id</th>
+						<th>@Html.DisplayFor(model => doctor.Name)</th>
+						<th>@Html.DisplayFor(model => doctor.Crm)</th>
+						<th>@Html.DisplayFor(model => doctor.AttendsByConvenience)</th>
+						<th>@Html.DisplayFor(model => doctor.HasClinic)</th>
+						<th>@Html.DisplayFor(model => doctor.Email)</th>
+						<th>@Html.DisplayFor(model => doctor.Address)</th>
+						<th>@Html.DisplayFor(model => doctor.Neighborhood)</th>
+					</tr>
+				}
+			</thead>
+		</table>
+	</div>
+}
