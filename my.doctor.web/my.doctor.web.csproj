@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\my.doctor.crosscutting\my.doctor.crosscutting.csproj" />
+    <ProjectReference Include="..\my.doctor.domain\my.doctor.domain.csproj" />
+  </ItemGroup>
+
+</Project>
