@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using my.doctor.domain.Interfaces.Repositories.Doctors;
+using my.doctor.domain.Models;
 using my.doctor.domain.ViewModels;
 
 namespace my.doctor.web.Controllers
@@ -25,6 +26,30 @@ namespace my.doctor.web.Controllers
             var result = _mapper.Map<IEnumerable<DoctorViewModel>>(map);
 
             return View(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var models = await _doctorRepository.GetAll();
+            ViewBag.Cities = _mapper.Map<IEnumerable<DoctorViewModel>>(models);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] DoctorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = _mapper.Map<Doctor>(model);
+                await _doctorRepository.Insert(entity);
+
+                TempData["MSG_S"] = "Register save succsess.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
     }
 }
