@@ -5,13 +5,17 @@ using Dapper.FluentMap;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using my.doctor.crosscutting.AutoMapperConfiguration;
+using my.doctor.domain.Interfaces.Repositories.Cities;
 using my.doctor.domain.Interfaces.Repositories.Doctors;
+using my.doctor.domain.Interfaces.Repositories.Specialisties;
 using my.doctor.infrastructure.EntityMapConfi;
+using my.doctor.infrastructure.Repositories.Cities;
 using my.doctor.infrastructure.Repositories.Doctors;
+using my.doctor.infrastructure.Repositories.Specialisties;
 
 namespace my.doctor.crosscutting.IOC
 {
-	public static class IocConfig
+    public static class IocConfig
 	{
 		public static void ServiceConfig(this IServiceCollection services, IConfiguration configuration)
 		{
@@ -20,6 +24,8 @@ namespace my.doctor.crosscutting.IOC
 
 			// Repositories
 			services.AddTransient<IDoctorRepository, DoctorRepository>();
+			services.AddTransient<ICityRepository, CityRepository>();
+			services.AddTransient<ISpecialistRepository, SpecialistRepository>();
 
 			// Automapper
 			var mapping = new MapperConfiguration(conf =>

@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using my.doctor.domain.Interfaces.Repositories.Cities;
 using my.doctor.domain.Interfaces.Repositories.Doctors;
+using my.doctor.domain.Interfaces.Repositories.Specialisties;
 using my.doctor.domain.Models;
 using my.doctor.domain.ViewModels;
 
@@ -11,12 +15,18 @@ namespace my.doctor.web.Controllers
     public class DoctorsController : Controller
     {
         private readonly IDoctorRepository _doctorRepository;
+        private readonly ICityRepository _cityRepository;
+        private readonly ISpecialistRepository _specialistRepository;
         private readonly IMapper _mapper;
 
         public DoctorsController(IDoctorRepository doctorRepository,
+                                 ICityRepository cityRepository,
+                                 ISpecialistRepository specialistRepository,
                                  IMapper mapper)
         {
             _doctorRepository = doctorRepository;
+            _cityRepository = cityRepository;
+            _specialistRepository = specialistRepository;
             _mapper = mapper;
         }
 
@@ -31,8 +41,13 @@ namespace my.doctor.web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var models = await _doctorRepository.GetAll();
-            ViewBag.Cities = _mapper.Map<IEnumerable<DoctorViewModel>>(models);
+            var models = _mapper.Map<IEnumerable<CityViewModel>>(await _cityRepository.GetAll());
+            var modelsSpecialist = _mapper.Map<IEnumerable<SpecialistViewModel>>(await _specialistRepository.GetAll());
+
+            ViewBag.Cities = models.ToList().Select(a => new SelectListItem(a.Name,
+                                                                            a.Id.ToString()));
+            ViewBag.Specialisties = modelsSpecialist.ToList().Select(a => new SelectListItem(a.Name,
+                                                                                             a.Id.ToString()));
 
             return View();
         }

@@ -54,9 +54,20 @@ namespace my.doctor.infrastructure.Repositories.Doctors
             throw new System.NotImplementedException();
         }
 
-        public Task Insert(Doctor obj)
+        public async Task Insert(Doctor request)
         {
-            throw new System.NotImplementedException();
+            _stringBuilder.Append($"INSERT INTO Doctors Values");
+            _stringBuilder.Append($"('{request.Crm}', ");
+            _stringBuilder.Append($"'{request.Name}', ");
+            _stringBuilder.Append($"'{request.Address}', ");
+            _stringBuilder.Append($"'{request.Neighborhood}', ");
+            _stringBuilder.Append($"'{request.Email}', ");
+            _stringBuilder.Append($"'{request.AttendsByConvenience}', ");
+            _stringBuilder.Append($"'{request.HasClinic}', ");
+            _stringBuilder.Append($"'{request.WebsiteBlog}', ");
+            _stringBuilder.Append($"{request.IdCity}, ");
+            _stringBuilder.Append($"{request.IdSpecilist})");
+            await _dbConnection.ExecuteAsync(_stringBuilder.ToString());
         }
 
         public Task Update(Doctor obj)
