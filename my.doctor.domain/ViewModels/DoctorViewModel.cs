@@ -4,7 +4,7 @@ namespace my.doctor.domain.ViewModels
 {
     public class DoctorViewModel
     {
-		[Display(Name ="Identificador")]
+		[Display(Name ="Código")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o CRM")]
@@ -31,7 +31,7 @@ namespace my.doctor.domain.ViewModels
 		public string Email { get; set; }
 
 		[Required(ErrorMessage = "Obrigatório informar se Atende por Convênio")]
-		[Display(Name = "Atende por convênio")]
+		[Display(Name = "Atende por convênio?")]
 		public bool AttendsByConvenience { get; set; }
 
 		[Required(ErrorMessage = "Obrigatório informar se Tem Clínica")]
@@ -43,10 +43,10 @@ namespace my.doctor.domain.ViewModels
 		public string WebsiteBlog { get; set; }
 
 		[Required(ErrorMessage = "Obrigatório informar a Cidade")]
-		[Display(Name = "Identificador Especialidade")]
+		[Display(Name = "Código Especialidade")]
 		public int IdSpecilist { get; set; }
 
-		[Display(Name = "Identificador Cidade")]
+		[Display(Name = "Código Cidade")]
 		[Required(ErrorMessage = "Obrigatório informar a Especialidade")]
 		public int IdCity { get; set; }
 	}
