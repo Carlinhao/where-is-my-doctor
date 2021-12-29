@@ -42,12 +42,12 @@ namespace my.doctor.domain.ViewModels
 		[Display(Name = "Web site")]
 		public string WebsiteBlog { get; set; }
 
-		[Required(ErrorMessage = "Obrigatório informar a Cidade")]
+		[Required(ErrorMessage = "Obrigatório informar a especialidade")]
 		[Display(Name = "Código Especialidade")]
 		public int IdSpecilist { get; set; }
 
+		[Required(ErrorMessage = "Obrigatório informar a Cidade")]
 		[Display(Name = "Código Cidade")]
-		[Required(ErrorMessage = "Obrigatório informar a Especialidade")]
 		public int IdCity { get; set; }
 	}
 }
