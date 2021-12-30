@@ -49,9 +49,10 @@ namespace my.doctor.infrastructure.Repositories.Doctors
             throw new System.NotImplementedException();
         }
 
-        public Task<Doctor> GetById(object id)
+        public async Task<Doctor> GetById(object id)
         {
-            throw new System.NotImplementedException();
+            var query = $"SELECT * FROM Doctors WHERE IDDoctors = {id}";
+            return await _dbConnection.QuerySingleAsync<Doctor>(query);            
         }
 
         public async Task Insert(Doctor request)
@@ -70,9 +71,20 @@ namespace my.doctor.infrastructure.Repositories.Doctors
             await _dbConnection.ExecuteAsync(_stringBuilder.ToString());
         }
 
-        public Task Update(Doctor obj)
+        public async Task Update(Doctor request)
         {
-            throw new System.NotImplementedException();
+            _stringBuilder.Append($"UPDATE Doctors SET");
+            _stringBuilder.Append($"CRM = '{request.Crm}', ");
+            _stringBuilder.Append($"Name = '{request.Name}', ");
+            _stringBuilder.Append($"Address = '{request.Address}', ");
+            _stringBuilder.Append($"Neighborhood = '{request.Neighborhood}', ");
+            _stringBuilder.Append($"Email = '{request.Email}', ");
+            _stringBuilder.Append($"AttendsByConvenience = '{request.AttendsByConvenience}', ");
+            _stringBuilder.Append($"HasClinic = '{request.HasClinic}', ");
+            _stringBuilder.Append($"WebsiteBlog = '{request.WebsiteBlog}', ");
+            _stringBuilder.Append($"IDCity = {request.IdCity}, ");
+            _stringBuilder.Append($"IDSpecialty =  {request.IdSpecilist} where IDDoctors = {request.Id}");
+            await _dbConnection.ExecuteAsync(_stringBuilder.ToString());
         }
     }
 }
