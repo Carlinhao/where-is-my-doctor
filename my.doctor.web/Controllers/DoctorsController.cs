@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +65,38 @@ namespace my.doctor.web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+		{
+            var doctor = _mapper.Map<DoctorViewModel>(await _doctorRepository.GetById(id));
+
+            var models = _mapper.Map<IEnumerable<CityViewModel>>(await _cityRepository.GetAll());
+            var modelsSpecialist = _mapper.Map<IEnumerable<SpecialistViewModel>>(await _specialistRepository.GetAll());
+
+            ViewBag.Cities = models.ToList().Select(a => new SelectListItem(a.Name,
+                                                                            a.Id.ToString()));
+            ViewBag.Specialisties = modelsSpecialist.ToList().Select(a => new SelectListItem(a.Name,
+                                                                                             a.Id.ToString()));
+            return View(doctor);
+        }
+
+        [HttpPut]
+        private async Task<IActionResult> Update([FromForm] DoctorViewModel model, int id)
+		{
+            if (ModelState.IsValid)
+            {
+                
+                await _doctorRepository.Update(_mapper.Map<Doctor>(model));
+                TempData["MSG_S"] = "Register save succsess.";
+
+                return RedirectToAction(nameof(Index));
+            }
+            //var result = await _repository.GetAllCategories();
+            //ViewBag.Categories = result.ToList().Where(c => c.Id != id).Select(a => new SelectListItem(a.Name,
+            //                                                                    a.Id.ToString()));
             return View();
         }
     }
