@@ -5,7 +5,7 @@
 }
 
 <h2>Doctors</h2>
-<a asp-action="Create" class="btn btn-primary" id="btnCreate" >Register</a>
+<a asp-action="Create" class="btn btn-primary" id="btnCreate">Register</a>
 
 @if (TempData["MSG_S"] != null)
 {
@@ -27,20 +27,30 @@
 					<th scope="col">@Html.DisplayNameFor(m => m.First().Address)</th>
 					<th scope="col">@Html.DisplayNameFor(m => m.First().Neighborhood)</th>
 				</tr>
-				@foreach(var doctor in Model)
+			</thead>
+			<tbody>
+				@foreach (var doctor in Model)
 				{
 					<tr>
 						<th scope="row">@doctor.Id</th>
-						<th>@Html.DisplayFor(model => doctor.Name)</th>
-						<th>@Html.DisplayFor(model => doctor.Crm)</th>
-						<th>@Html.DisplayFor(model => doctor.AttendsByConvenience)</th>
-						<th>@Html.DisplayFor(model => doctor.HasClinic)</th>
-						<th>@Html.DisplayFor(model => doctor.Email)</th>
-						<th>@Html.DisplayFor(model => doctor.Address)</th>
-						<th>@Html.DisplayFor(model => doctor.Neighborhood)</th>
+						<td>@Html.DisplayFor(model => doctor.Name)</td>
+						<td>@Html.DisplayFor(model => doctor.Crm)</td>
+						<td>@Html.DisplayFor(model => doctor.AttendsByConvenience)</td>
+						<td>@Html.DisplayFor(model => doctor.HasClinic)</td>
+						<td>@Html.DisplayFor(model => doctor.Email)</td>
+						<td>@Html.DisplayFor(model => doctor.Address)</td>
+						<td>@Html.DisplayFor(model => doctor.Neighborhood)</td>
+						<td>
+							<a asp-action="Update" asp-route-id="@doctor.Id" class="btn btn-secondary">Update</a>
+							<a asp-action="Delete" asp-route-id="@doctor.Id" class="btn btn-danger">Delete</a>
+						</td>
 					</tr>
 				}
-			</thead>
+			</tbody>
 		</table>
 	</div>
+}
+else
+{
+	<span>Register not found</span>
 }
