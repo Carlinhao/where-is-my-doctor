@@ -95,5 +95,20 @@ namespace my.doctor.web.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var doctor = _mapper.Map<DoctorViewModel>(await _doctorRepository.GetById(id));
+            if(doctor != null)
+            {
+                await _doctorRepository.Delete(id);
+                TempData["MSG_S"] = "Successfully deleted.";
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
+        }
     }
 }
