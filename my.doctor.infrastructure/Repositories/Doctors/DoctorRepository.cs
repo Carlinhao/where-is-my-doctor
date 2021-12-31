@@ -44,9 +44,10 @@ namespace my.doctor.infrastructure.Repositories.Doctors
             return await _dbConnection.QueryAsync<Doctor>(_stringBuilder.ToString());
         }
 
-        public Task Delete(object id)
+        public async Task Delete(object id)
         {
-            throw new System.NotImplementedException();
+            _stringBuilder.Append($"DELETE Doctors WHERE IDDoctors = {id}");
+            await _dbConnection.QueryAsync(_stringBuilder.ToString());
         }
 
         public async Task<Doctor> GetById(object id)
@@ -73,7 +74,7 @@ namespace my.doctor.infrastructure.Repositories.Doctors
 
         public async Task Update(Doctor request)
         {
-            _stringBuilder.Append($"UPDATE Doctors SET");
+            _stringBuilder.Append($"UPDATE Doctors SET ");
             _stringBuilder.Append($"CRM = '{request.Crm}', ");
             _stringBuilder.Append($"Name = '{request.Name}', ");
             _stringBuilder.Append($"Address = '{request.Address}', ");
