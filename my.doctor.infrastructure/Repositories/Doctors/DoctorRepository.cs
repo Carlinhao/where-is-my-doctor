@@ -73,7 +73,7 @@ namespace my.doctor.infrastructure.Repositories.Doctors
 
         public async Task Update(Doctor request)
         {
-            _stringBuilder.Append($"UPDATE Doctors SET");
+            _stringBuilder.Append($"UPDATE Doctors SET ");
             _stringBuilder.Append($"CRM = '{request.Crm}', ");
             _stringBuilder.Append($"Name = '{request.Name}', ");
             _stringBuilder.Append($"Address = '{request.Address}', ");
