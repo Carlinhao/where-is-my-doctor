@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -83,20 +82,17 @@ namespace my.doctor.web.Controllers
             return View(doctor);
         }
 
-        [HttpPut]
-        private async Task<IActionResult> Update([FromForm] DoctorViewModel model, int id)
+        [HttpPost]
+        public async Task<IActionResult> Update([FromForm] DoctorViewModel model, int id)
 		{
             if (ModelState.IsValid)
-            {
-                
+            {                
                 await _doctorRepository.Update(_mapper.Map<Doctor>(model));
                 TempData["MSG_S"] = "Register save succsess.";
 
                 return RedirectToAction(nameof(Index));
             }
-            //var result = await _repository.GetAllCategories();
-            //ViewBag.Categories = result.ToList().Where(c => c.Id != id).Select(a => new SelectListItem(a.Name,
-            //                                                                    a.Id.ToString()));
+
             return View();
         }
     }
