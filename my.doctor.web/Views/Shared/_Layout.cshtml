@@ -25,22 +25,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li id="menuPaises">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Países</a>
+                        <li id="menuMedicos">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="Index">Doctors</a>
+                        </li>
+                        <li id="menuLogin">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container-fluid">
+        <div class="container">
             &copy; @DateTime.Now.Year - Where is my doctor? <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
