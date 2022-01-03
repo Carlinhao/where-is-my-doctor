@@ -8,10 +8,12 @@ using my.doctor.crosscutting.AutoMapperConfiguration;
 using my.doctor.domain.Interfaces.Repositories.Cities;
 using my.doctor.domain.Interfaces.Repositories.Doctors;
 using my.doctor.domain.Interfaces.Repositories.Specialisties;
+using my.doctor.domain.Interfaces.Repositories.Users;
 using my.doctor.infrastructure.EntityMapConfi;
 using my.doctor.infrastructure.Repositories.Cities;
 using my.doctor.infrastructure.Repositories.Doctors;
 using my.doctor.infrastructure.Repositories.Specialisties;
+using my.doctor.infrastructure.Repositories.Users;
 
 namespace my.doctor.crosscutting.IOC
 {
@@ -26,6 +28,7 @@ namespace my.doctor.crosscutting.IOC
 			services.AddTransient<IDoctorRepository, DoctorRepository>();
 			services.AddTransient<ICityRepository, CityRepository>();
 			services.AddTransient<ISpecialistRepository, SpecialistRepository>();
+			services.AddTransient<IUserRepository, UserRepository>();
 
 			// Automapper
 			var mapping = new MapperConfiguration(conf =>
@@ -34,7 +37,7 @@ namespace my.doctor.crosscutting.IOC
 			});
 
 			IMapper mapper = mapping.CreateMapper();
-			services.AddSingleton(mapper);
+			services.AddSingleton(mapper);			
 		}
 
 		public static void Rister()
