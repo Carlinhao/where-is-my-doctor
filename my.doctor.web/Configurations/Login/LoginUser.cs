@@ -14,14 +14,14 @@ namespace my.doctor.web.Configurations.Login
             _sesseion = sesseion;
         }
 
-        public void PostCostumer(UserRequest costumer)
+        public void PostUser(UserRequest costumer)
         {
             var value = JsonSerializer.Serialize(costumer);
 
             _sesseion.Create(_key, value);
         }
 
-        public UserRequest GetCustomer()
+        public UserRequest GetUser()
         {
             if (_sesseion.Exist(_key))
             {
