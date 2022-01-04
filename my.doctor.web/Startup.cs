@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using my.doctor.crosscutting.IOC;
+using my.doctor.web.Configurations.Login;
+using my.doctor.web.Configurations.Session;
 
 namespace my.doctor.web
 {
@@ -20,7 +21,14 @@ namespace my.doctor.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.ServiceConfig(Configuration);
-            IocConfig.Rister();           
+            IocConfig.Rister();
+            services.AddHttpContextAccessor();
+            // Session
+            services.AddScoped<SessionConfig>();
+            services.AddScoped<LoginUser>();
+            services.AddSession(opt =>
+            {
+            });
             services.AddControllersWithViews();
             services.AddCors(options => 
             {
@@ -44,11 +52,11 @@ namespace my.doctor.web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

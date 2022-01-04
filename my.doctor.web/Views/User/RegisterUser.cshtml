@@ -1,0 +1,59 @@
+﻿@model UserRequest
+
+@{
+	ViewData["Title"] = "Register User";
+}
+
+<form asp-action="RegisterUser" asp-controller="User" method="post">
+	<main role="main">
+		<section class="container" style="margin-top: 50px">
+			<div class="row">
+				<aside class="col-sm-6">
+					<h3 class="subtitle-doc">
+						Register Customer
+					</h3>
+					<div id="code_register_1">
+						<div class="card">
+							<header class="card-header">
+								<a asp-controller="User" asp-action="Login" class="float-right btn btn-outline-primary mt-1">Log in</a>
+								<h4 class="card-title mt-2">Sign up</h4>
+							</header>
+							<article class="card-body">
+								@if (TempData["MSG_S"] != null)
+								{
+									<p class="alert alert-success">@TempData["MSG_S"]</p>
+								}
+								<div class="form-row">
+									<div class="col form-group">
+										<label asp-for="Name">Name</label>
+										<input type="text" asp-for="Name" class="form-control" placeholder="">
+										<span asp-validation-for="Name"></span>
+									</div>
+									<div class="col form-group">
+										<label asp-for="Login">Login</label>
+										<input type="text" asp-for="Login" class="form-control" placeholder="">
+										<span asp-validation-for="Login"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label asp-for="Email">E-mail</label>
+									<input type="text" asp-for="Email" class="form-control" placeholder="">
+									<span asp-validation-for="Email"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Password">Create password</label>
+									<input class="form-control" asp-for="Password" type="password">
+									<span asp-validation-for="Password"></span>
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary btn-block">Register</button>
+								</div>
+							</article>
+							<div class="border-top card-body text-center">Have an account? <a asp-action="Login" asp-controller="User">Log In</a></div>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</section>
+	</main>
+</form>

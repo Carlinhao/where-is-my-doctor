@@ -1,9 +1,10 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using my.doctor.web.Configurations.Login;
 
 namespace my.doctor.web.Controllers
 {
+    [UserLoginAuthorization]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

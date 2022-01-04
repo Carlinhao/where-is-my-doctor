@@ -9,9 +9,11 @@ using my.doctor.domain.Interfaces.Repositories.Doctors;
 using my.doctor.domain.Interfaces.Repositories.Specialisties;
 using my.doctor.domain.Models;
 using my.doctor.domain.ViewModels;
+using my.doctor.web.Configurations.Login;
 
 namespace my.doctor.web.Controllers
 {
+    [UserLoginAuthorization]
     public class DoctorsController : Controller
     {
         private readonly IDoctorRepository _doctorRepository;
