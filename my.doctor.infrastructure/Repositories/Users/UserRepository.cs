@@ -23,8 +23,8 @@ namespace my.doctor.infrastructure.Repositories.Users
 
         public async Task<UserRequest> CanDoLogin(UserRequest request)
         {
-            var pwd = ComputeHash(request.Password, new SHA256CryptoServiceProvider());
-            _stringBuilder.Append($"SELECT U.Login, U.Password FROM Users as U WHERE Login = '{request.Name}' and Password = '{pwd}'");
+            var pwd = await ComputeHash(request.Password, new SHA256CryptoServiceProvider());
+            _stringBuilder.Append($"SELECT U.Login, U.Password FROM Users as U WHERE Login = '{request.Login}' and Password = '{pwd}'");
 
             var result = await _dbConnection.QuerySingleAsync<UserRequest>(_stringBuilder.ToString());
 
@@ -41,7 +41,7 @@ namespace my.doctor.infrastructure.Repositories.Users
 
         public async Task RegisterUser(UserRequest request)
         {
-            var pwd = ComputeHash(request.Password, new SHA256CryptoServiceProvider());
+            var pwd = await ComputeHash(request.Password, new SHA256CryptoServiceProvider());
             _stringBuilder.Append($"INSERT INTO Users Values ");
             _stringBuilder.Append($"('{request.Name}', '{request.Login}', '{pwd}', '{request.Email}')");
 
