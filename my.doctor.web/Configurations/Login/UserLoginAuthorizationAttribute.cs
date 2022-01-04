@@ -9,7 +9,7 @@ namespace my.doctor.web.Configurations.Login
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var loginUser = (LoginUser)context.HttpContext.RequestServices.GetService(typeof(LoginUser));
-            var user = loginUser.GetCustomer();
+            var user = loginUser.GetUser();
 
             if (user == null)
             {
