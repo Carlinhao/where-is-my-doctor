@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using my.doctor.domain.Interfaces.Repositories.Users;
@@ -72,9 +71,9 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LogOff()
+        public IActionResult LogOff()
         {
-            await HttpContext.SignOutAsync();
+            _loginUser.Logout();
             return RedirectToAction("Index", "Home");
         }
     }
