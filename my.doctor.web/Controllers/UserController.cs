@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using my.doctor.domain.Interfaces.Repositories.Users;
@@ -61,7 +62,6 @@ namespace my.doctor.web.Controllers
             {
                 _loginUser.PostUser(customerRepo);
 
-
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -72,9 +72,9 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOff()
+        public async Task<IActionResult> LogOff()
         {
-
+            await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
