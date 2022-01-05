@@ -61,7 +61,6 @@ namespace my.doctor.web.Controllers
             {
                 _loginUser.PostUser(customerRepo);
 
-
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -72,9 +71,9 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOff()
+        public IActionResult LogOff()
         {
-
+            _loginUser.Logout();
             return RedirectToAction("Index", "Home");
         }
     }
