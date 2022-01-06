@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using my.doctor.domain.Interfaces.Repositories.Users;
 using my.doctor.domain.Models;
+using my.doctor.domain.ViewModels;
 using my.doctor.web.Configurations.Login;
 
 namespace my.doctor.web.Controllers
@@ -12,11 +14,14 @@ namespace my.doctor.web.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly LoginUser _loginUser;
+        private readonly IMapper _mapper;
         public UserController(IUserRepository userRepository,
-                              LoginUser loginUser)
+                              LoginUser loginUser,
+                              IMapper mapper)
         {
             _userRepository = userRepository;
             _loginUser = loginUser;
+            _mapper = mapper;
         }
 
         public ActionResult Login(string returnUrl)
@@ -32,11 +37,13 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterUser([FromForm] UserRequest userRequest)
+        public async Task<IActionResult> RegisterUser([FromForm] UserViewModel userRequest)
         {
             if (ModelState.IsValid)
             {
-                await _userRepository.RegisterUser(userRequest);
+                var entity = _mapper.Map<UserModel>(userRequest);
+
+                await _userRepository.RegisterUser(entity);
                 TempData["MSG_S"] = "Register with success!";
 
                 // TODO - Implement Diferent redirection
@@ -48,14 +55,14 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm] UserRequest userRequest)
+        public async Task<IActionResult> Login([FromForm] UserViewModel userRequest)
         {
             if (!ModelState.IsValid)
             {
-                return View(userRequest);
+                return View();
             }
-
-            var customerRepo = await _userRepository.CanDoLogin(userRequest);
+            var entity = _mapper.Map<UserModel>(userRequest);
+            var customerRepo = await _userRepository.CanDoLogin(entity);
 
             if (customerRepo != null)
             {
