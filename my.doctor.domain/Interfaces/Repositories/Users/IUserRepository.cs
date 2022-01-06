@@ -6,8 +6,8 @@ namespace my.doctor.domain.Interfaces.Repositories.Users
 {
     public interface IUserRepository
     {
-        Task<UserRequest> CanDoLogin(UserRequest request);
-        Task RegisterUser(UserRequest request);
+        Task<UserModel> CanDoLogin(UserModel request);
+        Task RegisterUser(UserModel request);
         Task<string> ComputeHash(string input, SHA256CryptoServiceProvider algorithm);
     }
 }

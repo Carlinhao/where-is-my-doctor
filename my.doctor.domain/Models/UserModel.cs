@@ -1,6 +1,6 @@
 ﻿namespace my.doctor.domain.Models
 {
-    public class UserRequest
+    public class UserModel
     {
         public string Name { get; set; }
         public string Email { get; set; }
