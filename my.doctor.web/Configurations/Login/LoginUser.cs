@@ -14,18 +14,18 @@ namespace my.doctor.web.Configurations.Login
             _sesseion = sesseion;
         }
 
-        public void PostUser(UserRequest costumer)
+        public void PostUser(UserModel costumer)
         {
             var value = JsonSerializer.Serialize(costumer);
 
             _sesseion.Create(_key, value);
         }
 
-        public UserRequest GetUser()
+        public UserModel GetUser()
         {
             if (_sesseion.Exist(_key))
             {
-                return JsonSerializer.Deserialize<UserRequest>(_sesseion.Search(_key));
+                return JsonSerializer.Deserialize<UserModel>(_sesseion.Search(_key));
             }
             return null;
         }
