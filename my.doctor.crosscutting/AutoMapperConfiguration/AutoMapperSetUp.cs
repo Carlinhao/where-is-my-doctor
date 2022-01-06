@@ -12,6 +12,7 @@ namespace my.doctor.crosscutting.AutoMapperConfiguration
             CreateMap<CityViewModel, City>().ReverseMap();
             CreateMap<UsersViewModel, Users>().ReverseMap();
             CreateMap<SpecialistViewModel, Specialist>().ReverseMap();
+            CreateMap<UserViewModel, UserModel>().ReverseMap();
         }
     }
 }
