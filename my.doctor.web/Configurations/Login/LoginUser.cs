@@ -9,9 +9,9 @@ namespace my.doctor.web.Configurations.Login
         private readonly string _key = "Login.User";
         private readonly SessionConfig _sesseion;
 
-        public LoginUser(SessionConfig sesseion)
+        public LoginUser(SessionConfig session)
         {
-            _sesseion = sesseion;
+            _sesseion = session;
         }
 
         public void PostUser(UserModel costumer)

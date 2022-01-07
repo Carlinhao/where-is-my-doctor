@@ -57,10 +57,6 @@ namespace my.doctor.web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] UserViewModel userRequest)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
             var entity = _mapper.Map<UserModel>(userRequest);
             var customerRepo = await _userRepository.CanDoLogin(entity);
 
@@ -77,11 +73,11 @@ namespace my.doctor.web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult LogOff()
         {
             _loginUser.Logout();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "User");
         }
     }
 }
