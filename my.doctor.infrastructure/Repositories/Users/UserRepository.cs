@@ -26,7 +26,7 @@ namespace my.doctor.infrastructure.Repositories.Users
             var pwd = await ComputeHash(request.Password, new SHA256CryptoServiceProvider());
             _stringBuilder.Append($"SELECT U.Login, U.Password FROM Users as U WHERE Login = '{request.Login}' and Password = '{pwd}'");
 
-            var result = await _dbConnection.QuerySingleAsync<UserModel>(_stringBuilder.ToString());
+            var result = await _dbConnection.QuerySingleOrDefaultAsync<UserModel>(_stringBuilder.ToString());
 
             return result;
         }
