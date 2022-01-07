@@ -13,7 +13,7 @@ namespace my.doctor.web.Configurations.Login
 
             if (user == null)
             {
-                context.Result = new RedirectToActionResult("Login", "Home", null);
+                context.Result = new RedirectToActionResult("Login", "User", null);
             }
         }
     }
