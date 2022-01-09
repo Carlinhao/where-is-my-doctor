@@ -16,7 +16,7 @@ namespace my.doctor.test.Utils
 		private int _idSpecilist;
 		private int _idCity;
 
-		public static DoctorBuilder Build()
+		public static DoctorBuilder Novo()
         {
 			return new DoctorBuilder();
         }
@@ -87,7 +87,7 @@ namespace my.doctor.test.Utils
 			return this;
 		}
 
-		public Doctor Novo()
+		public Doctor Build()
         {
 			return new Doctor 
 			{ 
