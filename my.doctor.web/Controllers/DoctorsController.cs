@@ -13,8 +13,7 @@ using my.doctor.web.Configurations.Login;
 
 namespace my.doctor.web.Controllers
 {
-    [UserLoginAuthorization]
-    [ValidateAntiForgeryToken]
+    [UserLoginAuthorization]    
     public class DoctorsController : Controller
     {
         private readonly IDoctorRepository _doctorRepository;
