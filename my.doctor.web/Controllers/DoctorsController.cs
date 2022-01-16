@@ -13,8 +13,7 @@ using my.doctor.web.Configurations.Login;
 
 namespace my.doctor.web.Controllers
 {
-    [UserLoginAuthorization]
-    [ValidateAntiForgeryToken]
+    [UserLoginAuthorization]    
     public class DoctorsController : Controller
     {
         private readonly IDoctorRepository _doctorRepository;
@@ -56,6 +55,7 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] DoctorViewModel model)
         {
             if (ModelState.IsValid)
@@ -86,6 +86,7 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update([FromForm] DoctorViewModel model, int id)
 		{
             if (ModelState.IsValid)

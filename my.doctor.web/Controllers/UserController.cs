@@ -37,6 +37,7 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterUser([FromForm] UserViewModel userRequest)
         {
             if (ModelState.IsValid)
@@ -55,6 +56,7 @@ namespace my.doctor.web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] UserViewModel userRequest)
         {
             var entity = _mapper.Map<UserModel>(userRequest);
