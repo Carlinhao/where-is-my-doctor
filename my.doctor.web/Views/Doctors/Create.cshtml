@@ -1,4 +1,5 @@
 ﻿@model DoctorViewModel
+
 @{
 	ViewData["Title"] = "Register Doctor";
 }
@@ -6,59 +7,7 @@
 <h1>Register Doctor</h1>
 
 <form method="post">
-  <div class="form-group">
-    <label asp-for="Name"></label>
-    <input asp-for="Name" class="form-control" placeholder="Nome" >
-    <span asp-validation-for="Name" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Crm"></label>
-    <input asp-for="Crm" class="form-control" placeholder="CRM" >
-    <span asp-validation-for="Crm" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Email"></label>
-    <input asp-for="Email" class="form-control" placeholder="Email" >
-    <span asp-validation-for="Email" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Neighborhood"></label>
-    <input asp-for="Neighborhood" class="form-control" placeholder="Bairro" >
-    <span asp-validation-for="Neighborhood" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="WebsiteBlog"></label>
-    <input asp-for="WebsiteBlog" class="form-control" placeholder="Web site" >
-    <span asp-validation-for="WebsiteBlog" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Address"></label>
-    <input asp-for="Address" class="form-control" placeholder="Endereço" >
-    <span asp-validation-for="Address" class="text-danger" ></span>
-  </div>
-  <div class="form-check">
-    <input asp-for="HasClinic" type="checkbox" class="form-check-input" id="hasClinic">
-    <label asp-for="HasClinic"></label>
-  </div>
-  <div class="form-check">
-    <input asp-for="AttendsByConvenience" type="checkbox" class="form-check-input" id="crm">
-    <label asp-for="AttendsByConvenience"></label>
-  </div>
-  <div class="form-group">
-    <label asp-for="IdSpecilist"></label>
-    <select asp-for="IdSpecilist" class="form-control" asp-items="@ViewBag.Specialisties">
-        <option value="">Select</option> 
-    </select>
-    <span asp-validation-for="IdCity" class="text-danger" ></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="IdCity"></label>
-    <select asp-for="IdCity" class="form-control" asp-items="@ViewBag.Cities">
-        <option value="">Select</option> 
-    </select>
-    <span asp-validation-for="IdCity" class="text-danger" ></span>
-  </div>
-  <button type="submit" class="btn btn-primary">Salvar</button>
+  <partial name="_DoctorsView" />
 </form>
 
 @section Scripts {
