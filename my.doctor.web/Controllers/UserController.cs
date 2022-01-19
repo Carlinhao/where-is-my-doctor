@@ -57,7 +57,7 @@ namespace my.doctor.web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([FromForm] UserViewModel userRequest)
+        public async Task<IActionResult> Login([FromForm] BaseLoginViewModel userRequest)
         {
             var entity = _mapper.Map<UserModel>(userRequest);
             var customerRepo = await _userRepository.CanDoLogin(entity);
