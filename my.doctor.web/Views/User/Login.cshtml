@@ -1,4 +1,4 @@
-﻿@model UserModel
+﻿@model BaseLoginViewModel
 
 @{
     ViewData["Title"] = "Login";
@@ -25,11 +25,13 @@
                             <div class="form-group">
                                 <label>Login</label>
                                 <input asp-for="Login" class="form-control" placeholder="Login" type="login">
+                                <span asp-validation-for="Login"></span>
                             </div>
                             <div class="form-group">
                                 <a class="float-right" href="#">Forgot?</a>
                                 <label>Password</label>
                                 <input asp-for="Password" class="form-control" placeholder="******" type="password">
+                                <span asp-validation-for="Password"></span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Login </button>
@@ -41,3 +43,6 @@
         </aside>
     </section>
 </main>
+@section Scripts {
+    @Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
