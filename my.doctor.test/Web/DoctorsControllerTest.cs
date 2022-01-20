@@ -14,6 +14,8 @@ using my.doctor.web.Controllers;
 using Xunit;
 using System.Linq;
 using my.doctor.domain.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace my.doctor.test.Infrastructure
 {
@@ -62,6 +64,33 @@ namespace my.doctor.test.Infrastructure
 
         }
 
+        [Fact(DisplayName = "Must create a doctor")]
+        [Trait("Category", "DoctorsController")]
+        public async Task Create_When_Data_Is_Valid_Must_Salve_Doctor()
+        {
+            // Arrange
+            var controller = new DoctorsController(_doctorRepository.Object,
+                                                   _cityRepository.Object,
+                                                   _specialistRepository.Object,
+                                                   _mapper);
+            var doctor = GetDoctorViewModel();
+            var entity = _mapper.Map<Doctor>(doctor);
+
+            _doctorRepository.Setup(x => x.Insert(entity)).Returns(Task.FromResult(new ViewResult()));
+            var httpContext = new DefaultHttpContext();
+            var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
+            // Act
+            controller.TempData = tempData;
+
+            var resultIndex = await controller.Create(doctor);
+
+            var viewResult = resultIndex.Should().BeOfType<RedirectToActionResult>().Subject;
+
+            // Assert
+            Assert.IsType<RedirectToActionResult>(viewResult);
+
+        }
+
         private IEnumerable<Doctor> GetDoctors()
         {
             return new List<Doctor>
@@ -86,6 +115,24 @@ namespace my.doctor.test.Infrastructure
                              .WithAttendsByConvenience(true)
                              .WithIdSpecilist(2).Build()
             };
+        }
+
+        private DoctorViewModel GetDoctorViewModel()
+        {
+            var doctor = DoctorBuilder.Novo()
+                                      .WithName("Paul Stone")
+                                      .WithEmail("paul.stone@teste.com")
+                                      .WithWebsiteBlog("www.doctorwho.com")
+                                      .WithNeighborhood("Sion Francisco")
+                                      .WithAddress("Rua Do Test")
+                                      .WithIdCity(1)
+                                      .WithIdSpecilist(2)
+                                      .WithHasClinic(false)
+                                      .WithAttendsByConvenience(true)
+                                      .WithCrm("852147")
+                                      .Build();
+
+            return _mapper.Map<DoctorViewModel>(doctor);
         }
     }
 }
